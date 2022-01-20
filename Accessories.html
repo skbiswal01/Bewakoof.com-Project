@@ -5,143 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessories/Bewakoof</title>
-    <style>
-        
-      .main-body{
-          width : 94%;
-          margin: 30px 80px;
-          padding: 10px;
-
-      }
-      .sub-body{
-        width: 100%;
-          display : flex;
-          justify-content: space-around;
-      }
-      .currentpage p{
-        Font-size: 22px;
-        color: rgb(45, 45, 45);
-      }
-
-      .currentpage p a{
-        text-decoration: none;
-        color: rgb(45, 45, 45);
-      }
-
-      .title{
-          
-          margin : 0 auto 60px;
-          position : relative;
-          line-height: 60px;
-          color : black;
-          font-size: 40px;
-      }
-      .title::after{
-          content: '';
-          background: #ff523b;
-          width: 130px;
-          height: 3px;
-          border-radius:5px;
-          position: absolute;
-          bottom:0;
-         
-          transform: translatex(-120%);
-      }
-         
-     .filter-items{
-          width : 30%;
-          border : 1px solid red;            
-      }
-
-
-    .product-items{
-        width : 90%;
-        margin : auto;
-        margin-left : 80px;
-        margin-right: 120px;
-        display : grid;
-        grid-template-columns : repeat(3, 1fr);
-        gap : 30px;
-        position : relative;
-      }
-      .product{ 
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        
-      }
-
-      .product img{
-          width : 100%;
-          cursor : pointer;
-          margin-bottom: -15px;
-         
-      }
-
-     .product:hover{
-      transform: scale(1.015);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-     }
-  
-     .product-btns{
-      opacity: 0;
-      transition: opacity 0.6s ease;
-     }
-
-    .product:hover .btn-cart{
-       opacity: 1;
-    }
-
-    .btn-cart {
-        background: transparent;
-        border: 1px solid black;
-        padding: 0.8rem 0;
-        width: 125px;
-        font-family: inherit;
-        text-transform: uppercase;
-        cursor: pointer;
-        border: none;
-        transition: all 0.6s ease;
-        opacity : 0;
-        position : absolute;
-        top : 0;
-        right : 0;
-      
-
-    }
-    .btn-cart{
-        background: black;
-        color: white;
-    }
-    .btn-cart:hover{
-        background: rgb(4, 143, 235);
-    } 
-    
-    .product-price-info p:nth-child(1){
-      text-decoration: line-through;
-    }
-
-    .product-info-top{
-      font-weight: bold;
-      margin-bottom : -35px;
-    }
-
-      .product-price-info{
-          display : inline-flex;
-          margin-right :10px;
-         
-        
-      }
-      .product-price{
-        margin-bottom : -30px;
-      }
-      .off-info{
-        background-color: rgb(244,228,244)
-;
-        margin-bottom : -18px;
-        
-      }
-
-
-  </style>
+    <link rel="stylesheet" href="productstyle.css">
 </head>
 <body>
   <div class="main-body">
@@ -327,7 +191,7 @@
     {
       image_url:
         "https://images.bewakoof.com/t320/friend-s-lightweight-adjustable-strap-men-slider-frl-333644-1641199175-5.jpg",
-      name: "Friends lightweight adjustable strap sliders",
+      name: "Friends lightweight adjustable sliders",
       price: 769,
       strikedoffprice: 1099,
       category : "sliders",
@@ -449,7 +313,7 @@
     {
       image_url:
         "https://images.bewakoof.com/t320/boat-bassheads-100-in-the-ear-wired-headphone-424100-1633595428-1.jpg",
-      name: "Basshead 100 in the ear wired Headphone",
+      name: "Basshead 100 in ear wired Headphone",
       price: 699,
       strikedoffprice: 999,
       category : "Headphones"
