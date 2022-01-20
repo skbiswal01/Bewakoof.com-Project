@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mens-Clothing/Bewakoof</title>
+    
+    <style>
+        
+        .main-body{
+            width : 94%;
+            margin: 30px 80px;
+            padding: 10px;
+
+        }
+        .sub-body{
+          width: 100%;
+            display : flex;
+            justify-content: space-around;
+        }
+        .currentpage p{
+        Font-size: 22px;
+        color: rgb(45, 45, 45);
+      }
+
+      .currentpage p a{
+        text-decoration: none;
+        color: rgb(45, 45, 45);
+      }
+        .title{
+            
+            margin : 0 auto 60px;
+            position : relative;
+            line-height: 60px;
+            color : black;
+            font-size : 40px;
+        }
+        .title::after{
+            content: '';
+            background: #ff523b;
+            width: 170px;
+            height: 3px;
+            border-radius:5px;
+            position: absolute;
+            bottom:0;
+            transform: translatex(-120%);
+        }
+           
+       .filter-items{
+            width : 30%;
+            border : 1px solid red;            
+        }
+  
+
+      .product-items{
+          width : 90%;
+          margin : auto;
+          margin-left : 80px;
+          margin-right: 120px;
+          display : grid;
+          grid-template-columns : repeat(3, 1fr);
+          gap : 30px;
+          position : relative;
+        }
+        .product{ 
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          
+        }
+
+        .product img{
+            width : 100%;
+            cursor : pointer;
+            margin-bottom: -15px;
+           
+        }
+  
+       .product:hover{
+        transform: scale(1.015);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+       }
+    
+       .product-btns{
+        opacity: 0;
+        transition: opacity 0.6s ease;
+       }
+
+      .product:hover .btn-cart{
+         opacity: 1;
+      }
+
+      .btn-cart {
+          background: transparent;
+          border: 1px solid black;
+          padding: 0.8rem 0;
+          width: 125px;
+          font-family: inherit;
+          text-transform: uppercase;
+          cursor: pointer;
+          border: none;
+          transition: all 0.6s ease;
+          opacity : 0;
+          position : absolute;
+          top : 0;
+          right : 0;
+        
+
+      }
+      .btn-cart{
+          background: black;
+          color: white;
+      }
+      .btn-cart:hover{
+          background: rgb(4, 143, 235);
+      } 
+      
+      .product-price-info p:nth-child(1){
+        text-decoration: line-through;
+      }
+
+      .product-info-top{
+        font-weight: bold;
+        margin-bottom : -35px;
+      }
+
+        .product-price-info{
+            display : inline-flex;
+            margin-right :10px;
+           
+          
+        }
+        .product-price{
+          margin-bottom : -30px;
+        }
+        .off-info{
+          background-color: rgb(244,228,244)
+;
+          margin-bottom : -18px;
+          
+        }
+
+
+    </style>
+</head>
+<body>
+   
+  
+    <div class="main-body">
+      <div class="currentpage">
+        <p><a href="">Home </a> / Men clothing</p>
+        <br>
+        <br>
+        <h1 class="title">Men Clothing</h1>
+      </div>
+      <div class="sub-body">
+             <div class="filter-items">
+               
+             </div>
+      
+            <div class="product-items">
+
+            </div> 
+      </div>    
+    </div>
+    
+</body>
+</html>
+<script>
+    var mensData = JSON.parse(localStorage.getItem("mensData")) ||[];
+    var CartArr = JSON.parse(localStorage.getItem("CartItems"))|| [];
+    var PreviewArr = [];
+
+ 
+  mensData.map(function (data){
+      var div = document.createElement("div");
+      div.setAttribute("class","product")
+
+      var div1 = document.createElement("div");
+      div1.setAttribute("class", "product-content")
+
+      var div3 = document.createElement("div");
+      div3.setAttribute("class","product-img")
+
+      var image = document.createElement("img");
+      image.setAttribute("src", data.image_url);
+
+      div3.append(image);
+
+      var div4 = document.createElement("div");
+      div4.setAttribute("class","product-btns;");
+
+      var btn = document.createElement("button");
+      btn.setAttribute("class", "btn-cart");
+      btn.textContent = "Add To Cart";
+
+      div4.append(btn);
+      div1.append(div3,div4);
+
+      var div5 = document.createElement("div");
+      div5.setAttribute("class","product-info");
+
+      var div6 = document.createElement("div");
+      div6.setAttribute("class","product-info-top");
+
+      var h2 = document.createElement("h3");
+      h2.setAttribute("class","sm-title");
+      h2.textContent = data.name;
+
+      div6.append(h2);
+
+      var div7 = document.createElement("div");
+      div7.setAttribute("class", "product-price");
+
+       var span1 = document.createElement("span");
+       span1.setAttribute("class","product-price-info");
+
+      var p1 = document.createElement("h3");
+      p1.textContent = data.price;
+
+      span1.append(p1);
+      var span2 = document.createElement("span");
+       span2.setAttribute("class","product-price-info");
+  
+      var p2 = document.createElement("p");
+      p2.textContent = data.strikedoffprice;
+
+      span2.append(p2);
+      div7.append(span1, span2)
+      div5.append(div6, div7);
+
+      var div8 = document.createElement("div");
+      div8.setAttribute("class","off-info");
+
+      var h3 = document.createElement("h3");
+      h3.setAttribute("class","sm-title");
+      h3.textContent = "25% off for TriBe Members";
+
+      div8.append(h3);
+      div.append(div1, div5, div8);
+
+      btn.addEventListener("click",function(){
+        addToCart(data);
+      });
+  
+     div3.addEventListener("click", function(){
+       previewpage(data);
+     });
+
+      document.querySelector(".product-items").append(div);
+
+    
+});
+     
+    function addToCart(data){
+        CartArr.push(data);
+        localStorage.setItem("CartItems", JSON.stringify(CartArr));
+        alert("added successfully");
+    } 
+
+    function previewpage(data){
+         PreviewArr.push(data);
+         localStorage.setItem("PreviewArr", JSON.stringify(PreviewArr));
+         window.location.href="preview.html";
+        
+    }
+
+    var info = [
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/jet-black-half-sleeve-t-shirt-106-1639137606-1.jpg",
+      name: "Deadpool Screwed half sleeve Tshirt",
+      price: 1999,
+      strikedoffprice: 3199,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/jet-black-henley-hoodie-full-sleeve-t-shirt-308345-1638511839-1.jpg",
+      name: "Deadpool Screwed full sleeve Tshirt",
+      price: 769,
+      strikedoffprice: 1099,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/gotham-city-half-sleeve-t-shirt-463685-1641536947-1.jpg",
+      name: "Deadpool Screwed half sleeve Tshirt",
+      price: 1299,
+      strikedoffprice: 1440,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/ryuk-half-sleeve-t-shirt-463666-1641538186-1.jpg",
+      name: "Legend seat half sleeve T-shirt",
+      price: 699,
+      strikedoffprice: 999,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/gotham-city-half-sleeve-t-shirt-463719-1641536986-1.jpg",
+      name: "Deadpool Screwed half sleeve Tshirt",
+      price: 1620,
+      strikedoffprice: 3599,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/adventure-on-full-sleeve-t-shirt-461451-1640945633-1.jpg",
+      name: "Adventure on full sleeve t-shirt",
+      price: 1620,
+      strikedoffprice: 3599,
+    },
+    {
+      image_url:
+        " https://images.bewakoof.com/t540/slate-rose-full-sleeve-t-shirt-346161-1641471288-1.jpg",
+      name: "Jet Black half sleeve T-shirt",
+      price: 599,
+      strikedoffprice: 999,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/black-purple-oppulance-colorblock-sweatshirt-hoodie-aw-21-369813-1641471571-1.jpg",
+      name: "Gotham city Half sleeve T-shirt",
+      price: 1575,
+      strikedoffprice: 3499,
+    },
+
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/ryuk-half-sleeve-t-shirt-463666-1641538186-1.jpg",
+      name: "Ryuk Half Sleeve T'Shirts",
+      price: 1999,
+      strikedoffprice: 3199,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/not-so-wine-half-sleeve-t-shirt-449139-1639137598-1.jpg",
+      name: "Not so wine half sleeve T-shirt",
+      price: 769,
+      strikedoffprice: 1099,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/orchid-petal-half-sleeve-t-shirt-454599-1640779465-1.jpg",
+      name: "Feel Good Lilac half sleeve T-shirt",
+      price: 1299,
+      strikedoffprice: 1440,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t540/ryuk-half-sleeve-t-shirt-463666-1641538186-1.jpg",
+      name: "Legend seat half sleeve T-shirt",
+      price: 699,
+      strikedoffprice: 999,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/off-road-jeep-full-sleeve-t-shirt-navy-blue-343092-1638021678-1.jpg",
+      name: "off-road full sleeve T-Shirt",
+      price: 1620,
+      strikedoffprice: 3599,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/verdant-green-full-sleeve-t-shirt-346159-1641471121-1.jpg",
+        name: "verdant green full sleeve t-shirt",
+      price: 1620,
+      strikedoffprice: 3599,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/motor-spirit-half-sleeve-t-shirt-461445-1640945234-1.jpg",
+      name: "motor spirit half sleeve t-shirt",
+      price: 599,
+      strikedoffprice: 999,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/sap-green-twill-jacket-aw-21-367105-1637319099-1.jpg",
+      name: "Sap green twill jacket",
+      price: 1575,
+      strikedoffprice: 3499,
+    },
+
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/atlantic-deep-long-sleeve-henley-t-shirt-405280-1638435606-1.jpg",
+      name: "Atlantic full sleeve T-shirt",
+      price: 1620,
+      strikedoffprice: 3599,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/white-henley-hoodie-full-sleeve-t-shirt-308346-1638438070-1.jpg",
+        name: "white henley hoodie T-shirt",
+      price: 1620,
+      strikedoffprice: 3599,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/world-peace-round-neck-varsity-h-s-t-shirt-364817-1637854896-1.jpg",
+      name: "World peace round Neck T-shirt",
+      price: 599,
+      strikedoffprice: 999,
+    },
+    {
+      image_url:
+        "https://images.bewakoof.com/t320/navy-blue-hoodie-sweatshirt-aw21-363705-1638435532-1.jpg",
+      name: "Navy blue hoodie sweatshirt ",
+      price: 1575,
+      strikedoffprice: 3499,
+    },
+   
+  ];
+
+  localStorage.setItem("mensData", JSON.stringify(info));
+
+  </script>
