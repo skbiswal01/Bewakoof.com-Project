@@ -15,9 +15,99 @@
       <br>
       <h1 class="title">Accessories</h1>
     </div>
+    <h3>FILTER</h3>
     <div class="sub-body">
            <div class="filter-items">
-             
+            <div class="select">
+              <select>
+                <option value="">Category</option>
+                <option value="">T-shirt</option>
+                <option value="">Boxer</option>
+                <option value="">Kurta</option>
+                <option value="">Shirt</option>
+                <option value="">Shorts</option>
+                <option value="">jacket</option>
+                <option value="">Joggers</option>
+              </select>
+             </div>
+             <div class="select">
+             <select name="" id="">
+               <option value="" class="">Size</option>
+                <option value="" class="">XS</option>
+                <option value="" class="">S</option>
+                <option value="" class="">M</option>
+                <option value="" class="">L</option>
+                <option value="" class="">XL</option>
+                <option value="" class="">2XL</option>
+                <option value="" class="">3XL</option>
+                <option value="" class="">4XL</option>
+             </select>
+            </div>
+             <div class="select">
+             <select name="" id="">
+               <option value="" class="">Brand</option>
+               <option value="" class="">Bewakoof</option>
+               <option value="" class="">Campus Sutra</option>
+               <option value="" class="">Hangup</option>
+               <option value="" class="">Breakbounce</option>
+               <option value="" class="">See Designs</option>
+               <option value="" class="">Fugazee</option>
+               <option value="" class="">The bear house</option>
+               <option value="" class="">Alcis</option>
+             </select>
+            </div>
+           <div class="select">
+             <select name="" id="">
+               <option value="" class="">Design</option>
+               <option value="" class="">Solid</option>
+               <option value="" class="">printed</option>
+               <option value="" class="">Graphic print</option>
+               <option value="" class="">Plain</option>
+               <option value="" class="">Typography</option>
+               <option value="" class="">AOP</option>
+               <option value="" class="">Washe</option>
+               <option value="" class="">Checked</option>
+             </select>
+           </div>
+           <div class="select">
+             <select name="" id="">
+               <option value="" class="">Fit</option>
+               <option value="" class="">Regular fit</option>
+               <option value="" class="">Relaxed Fit</option>
+               <option value="" class="">Slim Fit</option>
+               <option value="" class="">Oversized</option>
+               <option value="" class="">Loose fit</option>
+               <option value="" class="">Trappered fIt</option>
+               <option value="" class="">Skinny Fit</option>
+               <option value="" class="">Regular</option>
+             </select>
+           </div>
+           <div class="select">
+             <select name="" id="">
+               <option value="" class="">Sleeve</option>
+               <option value="" class="">Full sleeve</option>
+               <option value="" class="">half Sleeve</option>
+               <option value="" class="">Sleeveless</option>
+               <option value="" class="">na</option>
+               <option value="" class="">Short Sleeve</option>
+               <option value="" class="">Long Sleeve</option>
+               <option value="" class="">raglan sleeve</option>
+               <option value="" class="">#/4th Sleeve</option>
+             </select>
+           </div>
+             <div class="select">
+             <select name="" id="">
+               <option value="" class="">Neck</option>
+               <option value="" class="">mandarin color</option>
+               <option value="" class="">Round NecK</option>
+               <option value="" class="">Shirt Collar</option>
+               <option value="" class="">Polp</option>
+               <option value="" class="">Spread colar</option>
+               <option value="" class="">lapel Collar</option>
+               <option value="" class="">Hood</option>
+               <option value="" class="">Henley Neck</option>
+             </select>
+           </div>
            </div>
     
           <div class="product-items">
@@ -30,7 +120,7 @@
 </html>
 <script>
     var Accessories = JSON.parse(localStorage.getItem("Accessories")) ||[];
-    var CartArr = JSON.parse(localStorage.getItem("CartItems"))|| [];
+    var Wishlist = JSON.parse(localStorage.getItem("Wishlist"))|| [];
     var PreviewArr = [];
 
  Accessories.map(function (data){
@@ -53,7 +143,11 @@
 
       var btn = document.createElement("button");
       btn.setAttribute("class", "btn-cart");
-      btn.textContent = "Add To Cart";
+     
+      var btndiv = document.createElement("img");
+      btndiv.setAttribute("src","https://cdn2.iconfinder.com/data/icons/media-player-ui/512/Media-Icon-25-512.png");
+
+      btn.append(btndiv);
 
       div4.append(btn);
       div1.append(div3,div4);
@@ -93,7 +187,7 @@
       var div8 = document.createElement("div");
       div8.setAttribute("class","off-info");
 
-      var h3 = document.createElement("h3");
+      var h3 = document.createElement("h5");
       h3.setAttribute("class","sm-title");
       h3.textContent = "25% off for TriBe Members";
 
@@ -101,7 +195,7 @@
       div.append(div1, div5, div8);
 
       btn.addEventListener("click",function(){
-        addToCart(data);
+        addToWishlist(data);
       });
   
      div3.addEventListener("click", function(){
@@ -112,9 +206,9 @@
 
     });
 
-    function addToCart(data){
-        CartArr.push(data);
-        localStorage.setItem("CartItems", JSON.stringify(CartArr));
+    function addToWishlist(data){
+        Wishlist.push(data);
+        localStorage.setItem("CartItems", JSON.stringify(Wishlist));
         alert("added successfully");
     } 
 
